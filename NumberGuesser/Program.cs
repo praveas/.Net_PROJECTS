@@ -10,27 +10,10 @@ namespace NumberGuesser //namespace is like a container for class and functions
         //static means refering to function itself
         static void Main(string[] args)//void is a return type of this method    
         {
-            //Set app vars
-            string appName = "Number Guesser";
-            string appVersion = "1.0.0";
-            string appAuther = "Prabesh Pokharel";
+            GetAppInfo(); // Run GetAppInfo func to get info
 
-            // Change text color
-            Console.ForegroundColor = ConsoleColor.Green;
 
-            // Write out app info
-            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuther); //using placeholder
-
-            // Reset text color
-            Console.ResetColor();
-
-            // Ask users name
-            Console.WriteLine("What is your name?");
-
-            // Get user input
-            string inputName = Console.ReadLine();
-
-            Console.WriteLine("Hello {0}, let's play a game...", inputName);
+            GreetUser(); // Ask for users name and greet
 
             while (true) {
                 // Init correct number
@@ -57,14 +40,9 @@ namespace NumberGuesser //namespace is like a container for class and functions
                     // Make sure its a number
                     if (!int.TryParse(input, out guess))
                     {
-                        // Change text color
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        // Print error message
+                        PrintColorMessage(ConsoleColor.Red, "Please use an actual number");
 
-                        // Tell user its not a number
-                        Console.WriteLine("Please enter an actual number"); //using placeholder
-
-                        // Reset text color
-                        Console.ResetColor();
 
                         // Keep going
                         continue;
@@ -76,29 +54,17 @@ namespace NumberGuesser //namespace is like a container for class and functions
                     // Match guess to correct number
                     if (guess != correctNumber)
                     {
-                        // Change text color
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        // Tell user its the wrong number
-                        Console.WriteLine("Wrong number, please try again"); //using placeholder
-
-                        // Reset text color
-                        Console.ResetColor();
+                        // Print error message
+                        PrintColorMessage(ConsoleColor.Red, "Wrong number, please try again");
                     }
                 }
 
                 // Output success message
-                // Change text color
-                Console.ForegroundColor = ConsoleColor.Yellow;
-
-                // Tell user its the wrong number
-                Console.WriteLine("You are CORRECT!!!"); //using placeholder
-
-                // Reset text color
-                Console.ResetColor();
+                // Print success message
+                PrintColorMessage(ConsoleColor.Yellow, "You are CORRECT!!!");
 
                 // Ask to play again
-                Console.WriteLine("Play Again? [Y or N");
+                Console.WriteLine("Play Again? [Y or N]");
 
                 // Get answer
                 string answer = Console.ReadLine().ToUpper();
@@ -118,6 +84,49 @@ namespace NumberGuesser //namespace is like a container for class and functions
             }
 
 
+        }
+
+        // Get and Display app info
+        static void GetAppInfo()
+        {
+            //Set app vars
+            string appName = "Number Guesser";
+            string appVersion = "1.0.0";
+            string appAuther = "Prabesh Pokharel";
+
+            // Change text color
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            // Write out app info
+            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuther); //using placeholder
+
+            // Reset text color
+            Console.ResetColor();
+        }
+
+        //Ask User name and greet
+        static void GreetUser()
+        {
+            // Ask users name
+            Console.WriteLine("What is your name?");
+
+            // Get user input
+            string inputName = Console.ReadLine();
+
+            Console.WriteLine("Hello {0}, let's play a game...", inputName);
+        }
+
+        // Print color message
+        static void PrintColorMessage(ConsoleColor color, string message)
+        {
+            // Change text color
+            Console.ForegroundColor = color;
+
+            // Tell user its not a number
+            Console.WriteLine(message); //using placeholder
+
+            // Reset text color
+            Console.ResetColor();
         }
     }
 }
