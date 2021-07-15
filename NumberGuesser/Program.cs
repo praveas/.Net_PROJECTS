@@ -127,6 +127,8 @@ namespace NumberGuesser //namespace is like a container for class and functions
 
             // Reset text color
             Console.ResetColor();
+
+            //end of the code
         }
     }
 }
